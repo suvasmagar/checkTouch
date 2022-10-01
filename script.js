@@ -66,8 +66,8 @@ function startDrag(event) {
 
    else {
       
-      this.addEventListener("mousemove", moveDrag, false);
-      this.addEventListener("mouseup", removeDragListener, false);
+      this.addEventListener("mousemove", moveDrag, true);
+      this.addEventListener("mouseup", removeDragListener, true);
 
       loc = [this.offsetLeft,this.offsetTop];
       origin = getCoords(event);
@@ -99,9 +99,9 @@ function moveDrag(event) {
 // identify location of event
 function getCoords(event) {
    var coords = [];
-   if(event === "touchstart"){
-      coords[0] = event.clientX;
-      coords[1] = event.clientY;
+   if(event.type === "touchstart"){
+      coords[0] = event.touches[0].clientX;
+      coords[1] = event.touches[0].clientY;
       return coords;
    }
    else{
